@@ -11,8 +11,12 @@ async function getSpellById(req, res) {
   res.render('spells/:id', { spell: spell });
 }
 
+async function addSpellForm(req, res) {
+  res.render('new');
+}
+
 // if (updated === 0) {
 //   // spell not found OR bad category
 // }
 
-module.exports = { getAllSpells, getSpellById };
+module.exports = { getAllSpells, getSpellById, addSpellForm };

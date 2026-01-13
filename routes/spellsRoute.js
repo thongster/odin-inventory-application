@@ -5,12 +5,14 @@ const spellsController = require('../controllers/spellsController');
 
 spellsRoute.get('/', spellsController.getAllSpells);
 
-spellsRoute.get('/:spell_id', async (req, res) => {
-  res.render('spells', { spell: req.params.spell_id });
-});
+// spellsRoute.get('/:spell_id', async (req, res) => {
+//   res.render('spells', { spell: req.params.spell_id });
+// });
 
-spellsRoute.post('/add', async (req, res) => {
-  res.render('add');
+spellsRoute.get('/new', spellsController.addSpellForm);
+
+spellsRoute.post('/new', async (req, res) => {
+  res.render('new');
 });
 
 module.exports = spellsRoute;

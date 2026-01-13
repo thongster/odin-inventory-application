@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="/icon.png" />
+    <title>Mage Spellbook | Inventory Application</title>
+  </head>
+  <body>
+    <h1>Mage Spellbook</h1>
+    <h2>New Spell</h2>
+    <form action="/new" method="POST">
+      <label for="name">Spell Name:</label>
+      <input type="text" name="name" required />
+      <label for="description">Description</label>
+      <textarea rows="4" name="description" required></textarea>
+      <label for="mana">Mana:</label>
+      <input type="number" name="mana" required />
+      <label for="cooldown">Cooldown (seconds):</label>
+      <input type="number" name="cooldown" required />
+      <label for="damage">Damage:</label>
+      <input type="number" name="damage" required />
+      <label for="range">Range:</label>
+      <select name="range" required>
+        <option value="close">Close</option>
+        <option value="medium">Medium</option>
+        <option value="long">Long</option>
+      </select>
+      <button type="submit">Add</button>
+    </form>
+  </body>
+</html>
