@@ -1,5 +1,7 @@
-const pool = require("./pool");
+const pool = require('./pool');
 
-async function getInventoryList() {}
+async function getInventoryList() {
+  console.log(pool);
+}
 
-module.exports = {};
+module.exports = { getInventoryList };

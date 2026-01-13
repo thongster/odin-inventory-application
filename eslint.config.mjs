@@ -1,0 +1,18 @@
+import js from '@eslint/js';
+import globals from 'globals';
+import { defineConfig } from 'eslint/config';
+
+export default defineConfig([
+  {
+    files: ['**/*.{js,mjs,cjs}'],
+    extends: [js.configs.recommended],
+    languageOptions: {
+      globals: {
+        ...globals.node, // ✅ process, require, module, etc.
+        ...globals.es2021,
+      },
+      ecmaVersion: 'latest',
+      sourceType: 'commonjs',
+    },
+  },
+]);
