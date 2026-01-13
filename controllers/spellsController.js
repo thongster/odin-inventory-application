@@ -1,6 +1,54 @@
 // import db queries
 const db = require('../db/queries');
 
+// express validator
+const { body, validationResult, matchedData } = require('express-validator');
+
+const validateSpell = [
+  // SPELL NAME
+  body('name')
+    .trim()
+    .notEmpty()
+    .withMessage('Spell name is required')
+    .isLength({ min: 2, max: 30 })
+    .withMessage('Spell name must be between 2 and 30 characters'),
+
+  // DESCRIPTION
+  body('description')
+    .trim()
+    .notEmpty()
+    .withMessage('Description is required')
+    .isLength({ min: 10, max: 255 })
+    .withMessage('Description must be between 10 and 255 characters'),
+
+  // MANA
+  body('mana')
+    .notEmpty()
+    .withMessage('Mana cost is required')
+    .isInt({ min: 0, max: 1000 })
+    .withMessage('Mana must be a number greater than or equal to 0'),
+
+  // COOLDOWN
+  body('cooldown')
+    .notEmpty()
+    .withMessage('Cooldown is required')
+    .isInt({ min: 0, max: 3600 })
+    .withMessage('Cooldown must be a non-negative number'),
+
+  // DAMAGE (OPTIONAL)
+  body('damage')
+    .optional({ values: 'falsy' })
+    .isInt({ min: 0, max: 10000 })
+    .withMessage('Damage must be a non-negative number'),
+
+  // RANGE
+  body('range')
+    .notEmpty()
+    .withMessage('Range is required')
+    .isIn(['Close', 'Medium', 'Long'])
+    .withMessage('Range must be Close, Medium, or Long'),
+];
+
 async function getAllSpells(req, res) {
   const spells = await db.getAllSpells();
   res.render('spells', { spells: spells });
@@ -11,12 +59,39 @@ async function getSpellById(req, res) {
   res.render('spells/:id', { spell: spell });
 }
 
-async function addSpellForm(req, res) {
+async function showAddSpellForm(req, res) {
   res.render('new');
 }
 
+async function addSpell(req, res) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render('spells/new', {
+      errors: errors.array(),
+      formData: req.body,
+    });
+  }
+
+  await db.addSpell(
+    req.body.name,
+    req.body.description,
+    req.body.mana,
+    req.body.cooldown,
+    req.body.damage,
+    req.body.range,
+    req.body.element
+  );
+
+  res.redirect('/');
+}
 // if (updated === 0) {
 //   // spell not found OR bad category
 // }
 
-module.exports = { getAllSpells, getSpellById, addSpellForm };
+module.exports = {
+  getAllSpells,
+  getSpellById,
+  showAddSpellForm,
+  addSpell,
+  validateSpell,
+};

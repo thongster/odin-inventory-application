@@ -9,10 +9,12 @@ spellsRoute.get('/', spellsController.getAllSpells);
 //   res.render('spells', { spell: req.params.spell_id });
 // });
 
-spellsRoute.get('/new', spellsController.addSpellForm);
+spellsRoute.get('/new', spellsController.showAddSpellForm);
 
-spellsRoute.post('/new', async (req, res) => {
-  res.render('new');
-});
+spellsRoute.post(
+  '/new',
+  spellsController.validateSpell,
+  spellsController.addSpell
+);
 
 module.exports = spellsRoute;
