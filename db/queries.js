@@ -15,7 +15,7 @@ async function getSpellById(id) {
   return rows[0];
 }
 
-async function getSpellByElement(element) {
+async function getSpellsByElement(element) {
   const { rows } = await pool.query(
     `SELECT * FROM spells 
     JOIN categories ON spells.category_id = categories.id 
@@ -74,7 +74,7 @@ module.exports = {
   getAllSpells,
   getAllElements,
   getSpellById,
-  getSpellByElement,
+  getSpellsByElement,
   addSpell,
   updateSpell,
   deleteSpell,
