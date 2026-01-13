@@ -1,7 +1,11 @@
 const pool = require('./pool');
 
 async function getAllSpells() {
-  const { rows } = await pool.query('SELECT * FROM spells');
+  const { rows } = await pool.query(
+    `SELECT spells.*, categories.name AS element 
+    FROM spells
+    JOIN categories ON spells.category_id = categories.id`
+  );
   return rows;
 }
 
@@ -11,7 +15,13 @@ async function getAllElements() {
 }
 
 async function getSpellById(id) {
-  const { rows } = await pool.query('SELECT * FROM spells WHERE id = $1', [id]);
+  const { rows } = await pool.query(
+    `SELECT spells.*, categories.name AS element 
+    FROM spells 
+    JOIN categories ON spells.category_id = categories.id
+    WHERE id = $1`,
+    [id]
+  );
   return rows[0];
 }
 

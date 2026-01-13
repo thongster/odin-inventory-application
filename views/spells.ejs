@@ -9,5 +9,14 @@
   </head>
   <body>
     <h1>Mage Spellbook</h1>
+    <% spells.forEach((spell) => { %>
+        <h2><%= spell.name %></h2>
+        <p><%= spell.description %></p>
+        <p><%= spell.mana %></p>
+        <p><%= spell.cooldown %></p>
+        <p><%= spell.damage %></p>
+        <p><%= spell.range %></p>
+        <p><%= spell.element %></p>
+    <% }) %>
   </body>
 </html>

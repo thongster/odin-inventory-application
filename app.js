@@ -19,7 +19,7 @@ const elementsRoute = require('./routes/elementsRoute');
 // use routes
 app.use('/', indexRoute);
 app.use('/spells', spellsRoute);
-app.use('elements', elementsRoute);
+app.use('/elements', elementsRoute);
 
 // start server
 const PORT = process.env.PORT || 3000;

@@ -3,11 +3,9 @@ const { Router } = require('express');
 const elementsRoute = Router();
 const elementsController = require('../controllers/elementsController');
 
-elementsRoute.get('/elements', async (req, res) => {
-  res.render('elements');
-});
+elementsRoute.get('/', elementsController.getAllElements);
 
-elementsRoute.get('/elements/:category_id', async (req, res) => {
+elementsRoute.get('/:category_id', async (req, res) => {
   res.render('elements', { element: req.params.category_id });
 });
 
