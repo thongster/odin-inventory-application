@@ -2,19 +2,15 @@
 const { Router } = require('express');
 const spellsRoute = Router();
 
-spellsRoute.get('/', (req, res) => {
-  res.render('spellbook');
+spellsRoute.get('/', async (req, res) => {
+  res.render('spells');
 });
 
-spellsRoute.get('/spells', (req, res) => {
-  res.render('spellbook');
+spellsRoute.get('/:spell_id', async (req, res) => {
+  res.render('spells', { spell: req.params.spell_id });
 });
 
-spellsRoute.get('/spells/:spell_id', (req, res) => {
-  res.render('spellbook');
-});
-
-spellsRoute.post('/add', (req, res) => {
+spellsRoute.post('/add', async (req, res) => {
   res.render('add');
 });
 

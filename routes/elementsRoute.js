@@ -2,11 +2,11 @@
 const { Router } = require('express');
 const elementsRoute = Router();
 
-elementsRoute.get('/elements', (req, res) => {
+elementsRoute.get('/elements', async (req, res) => {
   res.render('elements');
 });
 
-elementsRoute.get('/elements/:category_id', (req, res) => {
+elementsRoute.get('/elements/:category_id', async (req, res) => {
   res.render('elements', { element: req.params.category_id });
 });
 

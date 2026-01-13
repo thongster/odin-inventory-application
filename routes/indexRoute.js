@@ -2,11 +2,7 @@
 const { Router } = require('express');
 const indexRoute = Router();
 
-// import queries
-// const db = require('../db/queries');
-
-indexRoute.get('/', async (req, res) => {
-  //   const messages = await db.getAllMessages();
+indexRoute.get('/', (req, res) => {
   res.render('index');
 });
 
