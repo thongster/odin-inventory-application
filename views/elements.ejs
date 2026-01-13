@@ -9,5 +9,9 @@
   </head>
   <body>
     <h1>Mage Spellbook</h1>
+    <% elements.forEach((element) => { %>
+        <h2><%= element.name %></h2>
+        <p><%= element.description %></p>
+    <% }) %>
   </body>
 </html>
