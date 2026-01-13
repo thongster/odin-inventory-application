@@ -1,6 +1,7 @@
 // import router and create new router
 const { Router } = require('express');
 const spellsRoute = Router();
+const spellsController = require('../controllers/spellsController');
 
 spellsRoute.get('/', async (req, res) => {
   res.render('spells');
