@@ -47,6 +47,13 @@ const validateSpell = [
     .withMessage('Range is required')
     .isIn(['Close', 'Medium', 'Long'])
     .withMessage('Range must be Close, Medium, or Long'),
+
+  // ELEMENT
+  body('element')
+    .notEmpty()
+    .withMessage('Element is required')
+    .isIn(['Fire', 'Water', 'Earth', 'Wind', 'Arcane'])
+    .withMessage('Element must be Fire, Water, Earth, Wind, or Arcane'),
 ];
 
 async function getAllSpells(req, res) {
@@ -64,6 +71,7 @@ async function showAddSpellForm(req, res) {
 }
 
 async function addSpell(req, res) {
+  console.log('am I here 3');
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render('spells/new', {
@@ -71,18 +79,13 @@ async function addSpell(req, res) {
       formData: req.body,
     });
   }
+  console.log('am I here');
+  const { name, description, mana, cooldown, damage, range, element } =
+    matchedData(req);
+  console.log('am I here 2');
+  await db.addSpell(name, description, mana, cooldown, damage, range, element);
 
-  await db.addSpell(
-    req.body.name,
-    req.body.description,
-    req.body.mana,
-    req.body.cooldown,
-    req.body.damage,
-    req.body.range,
-    req.body.element
-  );
-
-  res.redirect('/');
+  res.redirect('/spells');
 }
 // if (updated === 0) {
 //   // spell not found OR bad category
