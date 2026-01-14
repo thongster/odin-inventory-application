@@ -9,6 +9,7 @@
   </head>
   <body>
     <h1>Mage Spellbook</h1>
+    <%- include("partials/errors.ejs") %>
     <h2>Update Spell</h2>
     <form action="/spells/<%= spell.id %>/update" method="POST">
       <label for="name">Spell Name:</label>

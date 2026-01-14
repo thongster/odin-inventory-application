@@ -117,7 +117,7 @@ async function updateSpell(req, res) {
 }
 
 async function deleteSpell(req, res) {
-  await db.deleteSpell(req.params.id);
+  await db.deleteSpell(req.params.spell_id);
   res.redirect('/spells');
 }
 

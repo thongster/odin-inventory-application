@@ -19,6 +19,12 @@
     <p><%= spell.element %></p>
 
     <a href="/spells/<%= spell.id %>/update">Update</a>
-    <a href="/spells/<%= spell.id %>/delete">Delete</a>
+    <form
+      action="/spells/<%= spell.id %>/delete"
+      onsubmit="return confirm('Are you sure you want to delete this spell?');"
+      method="POST"
+    >
+      <button type="submit">Delete</button>
+    </form>
   </body>
 </html>
