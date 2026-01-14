@@ -19,7 +19,7 @@ async function getSpellById(id) {
     `SELECT spells.*, categories.name AS element 
     FROM spells 
     JOIN categories ON spells.category_id = categories.id
-    WHERE id = $1`,
+    WHERE spells.id = $1`,
     [id]
   );
   return rows[0];

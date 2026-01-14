@@ -62,8 +62,9 @@ async function getAllSpells(req, res) {
 }
 
 async function getSpellById(req, res) {
-  const spell = await db.getSpellById(req.body.id);
-  res.render('spells/:id', { spell: spell });
+  const spell = await db.getSpellById(req.params.spell_id);
+  console.log(spell);
+  res.render('spellShow', { spell: spell });
 }
 
 async function showAddSpellForm(req, res) {
@@ -71,7 +72,6 @@ async function showAddSpellForm(req, res) {
 }
 
 async function addSpell(req, res) {
-  console.log('am I here 3');
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render('spells/new', {
@@ -79,14 +79,37 @@ async function addSpell(req, res) {
       formData: req.body,
     });
   }
-  console.log('am I here');
   const { name, description, mana, cooldown, damage, range, element } =
     matchedData(req);
-  console.log('am I here 2');
+
   await db.addSpell(name, description, mana, cooldown, damage, range, element);
 
   res.redirect('/spells');
 }
+
+async function updateSpell(req, res) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render('spells/', {
+      errors: errors.array(),
+      formData: req.body,
+    });
+  }
+  const { id, name, description, mana, cooldown, damage, range, element } =
+    matchedData(req);
+
+  await db.update(
+    id,
+    name,
+    description,
+    mana,
+    cooldown,
+    damage,
+    range,
+    element
+  );
+}
+
 // if (updated === 0) {
 //   // spell not found OR bad category
 // }
@@ -97,4 +120,5 @@ module.exports = {
   showAddSpellForm,
   addSpell,
   validateSpell,
+  updateSpell,
 };
