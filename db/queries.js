@@ -74,8 +74,33 @@ async function updateSpell(
 async function deleteSpell(id) {
   await pool.query(
     `DELETE FROM spells
-        WHERE id = $1`,
+    WHERE id = $1`,
     [id]
+  );
+}
+
+async function addElement(name, description) {
+  await pool.query(
+    `INSERT INTO categories (name, description)
+    VALUES ($1, $2)`,
+    [name, description]
+  );
+}
+
+async function deleteElement(id) {
+  await pool.query(
+    `DELETE FROM categories
+    WHERE id = $1`,
+    [id]
+  );
+}
+
+async function updateElement(id, name, description) {
+  await pool.query(
+    `UPDATE categories
+    SET name = $2, description = $3
+    WHERE id = $1`,
+    [id, name, description]
   );
 }
 
@@ -87,4 +112,7 @@ module.exports = {
   addSpell,
   updateSpell,
   deleteSpell,
+  addElement,
+  deleteElement,
+  updateElement,
 };
