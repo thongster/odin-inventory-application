@@ -9,33 +9,40 @@
   </head>
   <body>
     <h1>Mage Spellbook</h1>
-    <h2>New Spell</h2>
+    <h2>Update Spell</h2>
     <form action="/spells/<%= spell_id %>/update" method="POST">
       <label for="name">Spell Name:</label>
-      <input type="text" name="name" required />
+      <input type="text" name="name" value="<%= spell.name %>" required />
       <label for="description">Description</label>
-      <textarea rows="4" name="description" required></textarea>
+      <textarea rows="4" name="description" required>
+<%= spell.description %></textarea
+      >
       <label for="mana">Mana:</label>
-      <input type="number" name="mana" required />
+      <input type="number" name="mana" value="<%= spell.mana %>" required />
       <label for="cooldown">Cooldown (seconds):</label>
-      <input type="number" name="cooldown" required />
+      <input
+        type="number"
+        name="cooldown"
+        value="<%= spell.cooldown %>"
+        required
+      />
       <label for="damage">Damage:</label>
-      <input type="number" name="damage" required />
+      <input type="number" name="damage" value="<%= spell.damage %>" required />
       <label for="range">Range:</label>
       <select name="range" required>
-        <option value="Close">Close</option>
-        <option value="Medium">Medium</option>
-        <option value="Long">Long</option>
+        <option value="Close" <%= spell.range === 'Close' ? 'selected' : '' %>>Close</option>
+        <option value="Medium" <%= spell.range === 'Medium' ? 'selected' : '' %>>Medium</option>
+        <option value="Long" <%= spell.range === 'Long' ? 'selected' : '' %>>Long</option>
       </select>
       <label for="element">Element:</label>
       <select name="element" required>
-        <option value="Fire">Fire</option>
-        <option value="Water">Water</option>
-        <option value="Earth">Earth</option>
-        <option value="Wind">Wind</option>
-        <option value="Arcane">Arcane</option>
+        <option value="Fire" <%= spell.element === 'Fire' ? 'selected' : '' %>>Fire</option>
+        <option value="Water" <%= spell.element === 'Water' ? 'selected' : '' %>>Water</option>
+        <option value="Earth" <%= spell.element === 'Earth' ? 'selected' : '' %>>Earth</option>
+        <option value="Wind" <%= spell.element === 'Wind' ? 'selected' : '' %>>Wind</option>
+        <option value="Arcane" <%= spell.element === 'Arcane' ? 'selected' : '' %>>Arcane</option>
       </select>
-      <button type="submit">Add</button>
+      <button type="submit">Update</button>
     </form>
   </body>
 </html>

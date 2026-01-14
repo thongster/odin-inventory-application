@@ -63,7 +63,6 @@ async function getAllSpells(req, res) {
 
 async function getSpellById(req, res) {
   const spell = await db.getSpellById(req.params.spell_id);
-  console.log(spell);
   res.render('spellShow', { spell: spell });
 }
 
@@ -87,6 +86,11 @@ async function addSpell(req, res) {
   res.redirect('/spells');
 }
 
+async function showUpdateSpellForm(req, res) {
+  const spell = await db.getSpellById(req.params.spell_id);
+  res.render(`updateSpell`, { spell_id: req.params.spell_id, spell: spell });
+}
+
 async function updateSpell(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -98,7 +102,7 @@ async function updateSpell(req, res) {
   const { id, name, description, mana, cooldown, damage, range, element } =
     matchedData(req);
 
-  await db.update(
+  await db.updateSpell(
     id,
     name,
     description,
@@ -108,6 +112,8 @@ async function updateSpell(req, res) {
     range,
     element
   );
+
+  res.redirect(`/spells/${req.params.spell_id}`);
 }
 
 // if (updated === 0) {
@@ -121,4 +127,5 @@ module.exports = {
   addSpell,
   validateSpell,
   updateSpell,
+  showUpdateSpellForm,
 };
