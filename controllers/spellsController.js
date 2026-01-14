@@ -73,7 +73,7 @@ async function showAddSpellForm(req, res) {
 async function addSpell(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).render('spells/new', {
+    return res.status(400).render('new', {
       errors: errors.array(),
       formData: req.body,
     });
@@ -94,9 +94,18 @@ async function showUpdateSpellForm(req, res) {
 async function updateSpell(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).render(`spells/${req.params.spell_id}/update`, {
+    return res.status(400).render(`updateSpell`, {
       errors: errors.array(),
-      formData: req.body,
+      spell: {
+        id: req.params.spell_id,
+        name: req.body.name,
+        description: req.body.description,
+        mana: req.body.mana,
+        cooldown: req.body.cooldown,
+        damage: req.body.damage,
+        range: req.body.range,
+        element: req.body.element,
+      },
     });
   }
   const { name, description, mana, cooldown, damage, range, element } =
