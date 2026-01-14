@@ -5,8 +5,6 @@ const elementsController = require('../controllers/elementsController');
 
 elementsRoute.get('/', elementsController.getAllElements);
 
-elementsRoute.get('/:element', elementsController.getSpellsByElement);
-
 elementsRoute.get('/add', elementsController.showAddElement);
 
 elementsRoute.post(
@@ -14,5 +12,7 @@ elementsRoute.post(
   elementsController.validateElement,
   elementsController.addElement
 );
+
+elementsRoute.get('/:element', elementsController.getSpellsByElement);
 
 module.exports = elementsRoute;
