@@ -15,4 +15,10 @@ spellsRoute.post(
 
 spellsRoute.get('/:spell_id', spellsController.getSpellById);
 
+spellsRoute.post(
+  '/:spell_id/update',
+  spellsController.validateSpell,
+  spellsController.updateSpell
+);
+
 module.exports = spellsRoute;

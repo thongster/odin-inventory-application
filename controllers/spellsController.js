@@ -90,7 +90,7 @@ async function addSpell(req, res) {
 async function updateSpell(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).render('spells/', {
+    return res.status(400).render(`spells/${req.params.spell_id}`, {
       errors: errors.array(),
       formData: req.body,
     });
