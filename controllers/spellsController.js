@@ -94,7 +94,7 @@ async function showUpdateSpellForm(req, res) {
 async function updateSpell(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).render(`spells/${req.params.spell_id}`, {
+    return res.status(400).render(`spells/${req.params.spell_id}/update`, {
       errors: errors.array(),
       formData: req.body,
     });
@@ -116,9 +116,10 @@ async function updateSpell(req, res) {
   res.redirect(`/spells/${req.params.spell_id}`);
 }
 
-// if (updated === 0) {
-//   // spell not found OR bad category
-// }
+async function deleteSpell(req, res) {
+  await db.deleteSpell(req.params.id);
+  res.redirect('/spells');
+}
 
 module.exports = {
   getAllSpells,
@@ -128,4 +129,5 @@ module.exports = {
   validateSpell,
   updateSpell,
   showUpdateSpellForm,
+  deleteSpell,
 };

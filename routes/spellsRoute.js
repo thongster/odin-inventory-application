@@ -29,4 +29,7 @@ spellsRoute.post(
   spellsController.updateSpell
 );
 
+// submit delete spell
+spellsRoute.post('/:spell_id/delete', spellsController.deleteSpell);
+
 module.exports = spellsRoute;
