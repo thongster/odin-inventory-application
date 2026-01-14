@@ -37,11 +37,10 @@
       </select>
       <label for="element">Element:</label>
       <select name="element" required>
-        <option value="Fire" <%= spell.element === 'Fire' ? 'selected' : '' %>>Fire</option>
-        <option value="Water" <%= spell.element === 'Water' ? 'selected' : '' %>>Water</option>
-        <option value="Earth" <%= spell.element === 'Earth' ? 'selected' : '' %>>Earth</option>
-        <option value="Wind" <%= spell.element === 'Wind' ? 'selected' : '' %>>Wind</option>
-        <option value="Arcane" <%= spell.element === 'Arcane' ? 'selected' : '' %>>Arcane</option>
+        <% elements.forEach((element) => { %>
+            <option value="<%= element.name %>" <%= spell.element === element.name ? 'selected' : '' %>><%= element.name %></option>
+        <% }) %>
+
       </select>
       <button type="submit">Update</button>
     </form>

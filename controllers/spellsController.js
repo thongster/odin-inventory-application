@@ -89,7 +89,8 @@ async function addSpell(req, res) {
 
 async function showUpdateSpellForm(req, res) {
   const spell = await db.getSpellById(req.params.spell_id);
-  res.render(`updateSpell`, { spell: spell });
+  const elements = await db.getAllElements();
+  res.render(`updateSpell`, { spell: spell, elements: elements });
 }
 
 async function updateSpell(req, res) {
