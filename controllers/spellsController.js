@@ -67,7 +67,8 @@ async function getSpellById(req, res) {
 }
 
 async function showAddSpellForm(req, res) {
-  res.render('new');
+  const elements = await db.getAllElements();
+  res.render('new', { elements: elements });
 }
 
 async function addSpell(req, res) {

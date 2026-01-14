@@ -30,11 +30,9 @@
       </select>
       <label for="element">Element:</label>
       <select name="element" required>
-        <option value="Fire">Fire</option>
-        <option value="Water">Water</option>
-        <option value="Earth">Earth</option>
-        <option value="Wind">Wind</option>
-        <option value="Arcane">Arcane</option>
+        <% elements.forEach((element) => { %>
+            <option value="<%= element.name %>"><%= element.name %></option>
+        <% }) %>
       </select>
       <button type="submit">Add</button>
     </form>
