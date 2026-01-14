@@ -27,7 +27,8 @@ async function getSpellById(id) {
 
 async function getSpellsByElement(element) {
   const { rows } = await pool.query(
-    `SELECT * FROM spells 
+    `SELECT spells.*, categories.name AS element 
+    FROM spells 
     JOIN categories ON spells.category_id = categories.id 
     WHERE categories.name = $1`,
     [element]
