@@ -7,10 +7,18 @@ async function getAllElements(req, res) {
 }
 
 async function getSpellsByElement(req, res) {
-  let element = req.params.element;
-  element = element.charAt(0).toUpperCase() + element.slice(1);
-  const spells = await db.getSpellsByElement(element);
-  res.render('spellByElementShow', { element: element, spells: spells });
+  let elementName = req.params.element;
+  elementName = elementName.charAt(0).toUpperCase() + elementName.slice(1);
+
+  const data = await db.getSpellsByElement(elementName);
+
+  const element = {
+    id: data[0].c_id,
+    name: data[0].element,
+    description: data[0].c_description,
+  };
+
+  res.render('spellByElementShow', { element: element, spells: data });
 }
 
 // if (updated === 0) {

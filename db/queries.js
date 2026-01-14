@@ -27,7 +27,7 @@ async function getSpellById(id) {
 
 async function getSpellsByElement(element) {
   const { rows } = await pool.query(
-    `SELECT spells.*, categories.name AS element 
+    `SELECT spells.*, categories.id AS c_id, categories.name AS element, categories.description AS c_description
     FROM spells 
     JOIN categories ON spells.category_id = categories.id 
     WHERE categories.name = $1`,
@@ -79,6 +79,18 @@ async function deleteSpell(id) {
   );
 }
 
+async function getElementById(id) {
+  const { rows } = await pool.query(
+    `SELECT * 
+    FROM categories
+    WHERE id = $1
+    `,
+    [id]
+  );
+
+  return rows[0];
+}
+
 async function addElement(name, description) {
   await pool.query(
     `INSERT INTO categories (name, description)
@@ -112,6 +124,7 @@ module.exports = {
   addSpell,
   updateSpell,
   deleteSpell,
+  getElementById,
   addElement,
   deleteElement,
   updateElement,

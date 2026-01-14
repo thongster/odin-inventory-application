@@ -9,7 +9,8 @@
   </head>
   <body>
     <h1>Mage Spellbook</h1>
-    <h2><%= element %></h2>
+    <h2><%= element.name %></h2>
+    <p><%= element.description %></p>
     <% spells.forEach((spell) => { %>
         <h3><%= spell.name %></h3>
         <p><%= spell.description %></p>
@@ -17,7 +18,6 @@
         <p><%= spell.cooldown %></p>
         <p><%= spell.damage %></p>
         <p><%= spell.range %></p>
-        <p><%= spell.element %></p>
     <% }) %>
   </body>
 </html>
