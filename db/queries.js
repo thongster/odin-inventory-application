@@ -79,17 +79,17 @@ async function deleteSpell(id) {
   );
 }
 
-async function getElementById(id) {
-  const { rows } = await pool.query(
-    `SELECT * 
-    FROM categories
-    WHERE id = $1
-    `,
-    [id]
-  );
+// async function getElementById(id) {
+//   const { rows } = await pool.query(
+//     `SELECT *
+//     FROM categories
+//     WHERE id = $1
+//     `,
+//     [id]
+//   );
 
-  return rows[0];
-}
+//   return rows[0];
+// }
 
 async function addElement(name, description) {
   await pool.query(
@@ -124,7 +124,7 @@ module.exports = {
   addSpell,
   updateSpell,
   deleteSpell,
-  getElementById,
+  //   getElementById,
   addElement,
   deleteElement,
   updateElement,
