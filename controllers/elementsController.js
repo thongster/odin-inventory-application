@@ -47,15 +47,21 @@ async function showAddElement(req, res) {
 }
 
 async function addElement(req, res) {
-  await db.addElement(req.body.name, req.body.description);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render('addElement', {
+      errors: errors.array(),
+      formData: req.body,
+    });
+  }
+  const { name, description } = matchedData(req);
+
+  await db.addElement(name, description);
   res.redirect('/elements');
 }
 
-// if (updated === 0) {
-//   // spell not found OR bad category
-// }
-
 module.exports = {
+  validateElement,
   getAllElements,
   getSpellsByElement,
   showAddElement,

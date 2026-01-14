@@ -7,4 +7,12 @@ elementsRoute.get('/', elementsController.getAllElements);
 
 elementsRoute.get('/:element', elementsController.getSpellsByElement);
 
+elementsRoute.get('/add', elementsController.showAddElement);
+
+elementsRoute.post(
+  '/add',
+  elementsController.validateElement,
+  elementsController.addElement
+);
+
 module.exports = elementsRoute;
