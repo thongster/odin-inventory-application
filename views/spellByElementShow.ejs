@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="/icon.png" />
+    <title>Mage Spellbook | Inventory Application</title>
+  </head>
+  <body>
+    <h1>Mage Spellbook</h1>
+    <h2><%= element %></h2>
+    <% spells.forEach((spell) => { %>
+        <h3><%= spell.name %></h3>
+        <p><%= spell.description %></p>
+        <p><%= spell.mana %></p>
+        <p><%= spell.cooldown %></p>
+        <p><%= spell.damage %></p>
+        <p><%= spell.range %></p>
+        <p><%= spell.element %></p>
+    <% }) %>
+  </body>
+</html>

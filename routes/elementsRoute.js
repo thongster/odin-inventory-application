@@ -5,8 +5,6 @@ const elementsController = require('../controllers/elementsController');
 
 elementsRoute.get('/', elementsController.getAllElements);
 
-elementsRoute.get('/:category_id', async (req, res) => {
-  res.render('elements', { element: req.params.category_id });
-});
+elementsRoute.get('/:element', elementsController.getSpellsByElement);
 
 module.exports = elementsRoute;
