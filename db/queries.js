@@ -62,15 +62,13 @@ async function updateSpell(
   range,
   element
 ) {
-  const { rowCount } = await pool.query(
+  await pool.query(
     `UPDATE spells
         SET name = $2, description = $3, mana = $4, cooldown = $5, damage = $6, range = $7,
         category_id = (SELECT id FROM categories WHERE name = $8)
         WHERE id = $1`,
     [id, name, description, mana, cooldown, damage, range, element]
   );
-
-  return rowCount;
 }
 
 async function deleteSpell(id) {

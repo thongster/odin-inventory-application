@@ -88,7 +88,7 @@ async function addSpell(req, res) {
 
 async function showUpdateSpellForm(req, res) {
   const spell = await db.getSpellById(req.params.spell_id);
-  res.render(`updateSpell`, { spell_id: req.params.spell_id, spell: spell });
+  res.render(`updateSpell`, { spell: spell });
 }
 
 async function updateSpell(req, res) {
@@ -99,11 +99,11 @@ async function updateSpell(req, res) {
       formData: req.body,
     });
   }
-  const { id, name, description, mana, cooldown, damage, range, element } =
+  const { name, description, mana, cooldown, damage, range, element } =
     matchedData(req);
 
   await db.updateSpell(
-    id,
+    req.params.spell_id,
     name,
     description,
     mana,
