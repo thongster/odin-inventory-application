@@ -78,6 +78,27 @@ async function deleteElement(req, res) {
   }
 }
 
+// async function updateElement(req, res) {
+//   const elements = await db.getAllElements();
+//   const errors = validationResult(req);
+//   if (!errors.isEmpty()) {
+//     return res.status(400).render(`updateSpell`, {
+//       errors: errors.array(),
+//       element: {
+//         id: req.params.element_id,
+//         name: req.body.name,
+//         description: req.body.description,
+//       },
+//       elements: elements,
+//     });
+//   }
+//   const { name, description } = matchedData(req);
+
+//   await db.updateElement(req.params.element, name, description);
+
+//   res.redirect(`/spells/${req.params.element}`);
+// }
+
 module.exports = {
   validateElement,
   getAllElements,
@@ -85,4 +106,5 @@ module.exports = {
   showAddElement,
   addElement,
   deleteElement,
+  updateElement,
 };
