@@ -9,6 +9,7 @@
   </head>
   <body>
     <h1>Mage Spellbook</h1>
+    <%- include("partials/errors.ejs") %>
     <h2><%= element.name %></h2>
     <p><%= element.description %></p>
     <% spells.forEach((spell) => { %>
@@ -21,7 +22,7 @@
     <% }) %>
     <a href="/elements/<%= element.id %>/update">Update Element</a>
     <form
-      action="/elements/<%= element.id %>/delete"
+      action="/elements/<%= element.name %>/delete"
       onsubmit="return confirm('Are you sure you want to delete this spell?');"
       method="POST"
     >

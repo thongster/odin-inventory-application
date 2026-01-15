@@ -99,11 +99,11 @@ async function addElement(name, description) {
   );
 }
 
-async function deleteElement(id) {
+async function deleteElement(element) {
   await pool.query(
     `DELETE FROM categories
-    WHERE id = $1`,
-    [id]
+    WHERE name ILIKE $1`,
+    [element]
   );
 }
 

@@ -49,11 +49,7 @@ const validateSpell = [
     .withMessage('Range must be Close, Medium, or Long'),
 
   // ELEMENT
-  body('element')
-    .notEmpty()
-    .withMessage('Element is required')
-    .isIn(['Fire', 'Water', 'Earth', 'Wind', 'Arcane'])
-    .withMessage('Element must be Fire, Water, Earth, Wind, or Arcane'),
+  body('element').notEmpty().withMessage('Element is required'),
 ];
 
 async function getAllSpells(req, res) {
@@ -72,11 +68,13 @@ async function showAddSpellForm(req, res) {
 }
 
 async function addSpell(req, res) {
+  const elements = await db.getAllElements();
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render('new', {
       errors: errors.array(),
       formData: req.body,
+      elements: elements,
     });
   }
   const { name, description, mana, cooldown, damage, range, element } =
@@ -94,6 +92,7 @@ async function showUpdateSpellForm(req, res) {
 }
 
 async function updateSpell(req, res) {
+  const elements = await db.getAllElements();
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render(`updateSpell`, {
@@ -108,6 +107,7 @@ async function updateSpell(req, res) {
         range: req.body.range,
         element: req.body.element,
       },
+      elements: elements,
     });
   }
   const { name, description, mana, cooldown, damage, range, element } =

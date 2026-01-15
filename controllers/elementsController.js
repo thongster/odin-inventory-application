@@ -28,6 +28,11 @@ async function getAllElements(req, res) {
 }
 
 async function getSpellsByElement(req, res) {
+  const errors =
+    req.query.error === 'cannot_delete'
+      ? [{ msg: 'Cannot delete an element which contains spells in it' }]
+      : null;
+
   let elementName = req.params.element;
   elementName = elementName.charAt(0).toUpperCase() + elementName.slice(1);
 
@@ -39,7 +44,11 @@ async function getSpellsByElement(req, res) {
     description: data[0].c_description,
   };
 
-  res.render('spellByElementShow', { element: element, spells: data });
+  res.render('spellByElementShow', {
+    element: element,
+    spells: data,
+    errors: errors,
+  });
 }
 
 async function showAddElement(req, res) {
@@ -60,10 +69,20 @@ async function addElement(req, res) {
   res.redirect('/elements');
 }
 
+async function deleteElement(req, res) {
+  try {
+    await db.deleteElement(req.params.element);
+    res.redirect('/elements');
+  } catch {
+    return res.redirect(`/elements/${req.params.element}?error=cannot_delete`);
+  }
+}
+
 module.exports = {
   validateElement,
   getAllElements,
   getSpellsByElement,
   showAddElement,
   addElement,
+  deleteElement,
 };
