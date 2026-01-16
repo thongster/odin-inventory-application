@@ -79,17 +79,17 @@ async function deleteSpell(id) {
   );
 }
 
-// async function getElementById(id) {
-//   const { rows } = await pool.query(
-//     `SELECT *
-//     FROM categories
-//     WHERE id = $1
-//     `,
-//     [id]
-//   );
+async function getElementByName(element) {
+  const { rows } = await pool.query(
+    `SELECT *
+    FROM categories
+    WHERE name ILIKE $1
+    `,
+    [element]
+  );
 
-//   return rows[0];
-// }
+  return rows[0];
+}
 
 async function addElement(name, description) {
   await pool.query(
@@ -124,7 +124,7 @@ module.exports = {
   addSpell,
   updateSpell,
   deleteSpell,
-  //   getElementById,
+  getElementByName,
   addElement,
   deleteElement,
   updateElement,

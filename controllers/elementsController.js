@@ -78,6 +78,12 @@ async function deleteElement(req, res) {
   }
 }
 
+async function showUpdateElementForm(req, res) {
+  const element = await db.getElementByName(res.params.element);
+
+  res.render('updateElement', { element: element });
+}
+
 async function updateElement(req, res) {
   const elements = await db.getAllElements();
   const errors = validationResult(req);
@@ -105,5 +111,6 @@ module.exports = {
   showAddElement,
   addElement,
   deleteElement,
+  showUpdateElementForm,
   updateElement,
 };
