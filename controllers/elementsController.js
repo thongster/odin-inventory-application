@@ -79,8 +79,7 @@ async function deleteElement(req, res) {
 }
 
 async function showUpdateElementForm(req, res) {
-  const element = await db.getElementByName(res.params.element);
-
+  const element = await db.getElementByName(req.params.element);
   res.render('updateElement', { element: element });
 }
 
