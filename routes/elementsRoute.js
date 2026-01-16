@@ -17,4 +17,6 @@ elementsRoute.get('/:element', elementsController.getSpellsByElement);
 
 elementsRoute.post('/:element/delete', elementsController.deleteElement);
 
+elementsRoute.get('/:element/update', elementsController.updateElement);
+
 module.exports = elementsRoute;
