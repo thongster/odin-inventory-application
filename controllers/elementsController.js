@@ -65,8 +65,16 @@ async function addElement(req, res) {
   }
   const { name, description } = matchedData(req);
 
-  await db.addElement(name, description);
-  res.redirect('/elements');
+  try {
+    await db.addElement(name, description);
+    res.redirect('/elements');
+  } catch (err) {
+    if (err.code === '23505') {
+      return res.status(400).render('addElement', {
+        errors: [{ msg: 'An element with this name already exists' }],
+      });
+    }
+  }
 }
 
 async function deleteElement(req, res) {
@@ -97,9 +105,19 @@ async function updateElement(req, res) {
   }
   const { name, description } = matchedData(req);
 
-  await db.updateElement(elementPre.id, name, description);
+  const existing = await db.getElementByName(name);
+  if (existing && existing.id !== elementPre.id) {
+    return res.status(400).render('updateElement', {
+      errors: [{ msg: 'An element with this name already exists' }],
+      element: {
+        name,
+        description,
+      },
+    });
+  }
 
-  res.redirect(`/elements/${req.params.element}`);
+  await db.updateElement(elementPre.id, name, description);
+  res.redirect(`/elements/${name}`);
 }
 
 module.exports = {
