@@ -195,7 +195,7 @@ VALUES
 `;
 
 async function main() {
-  const dbUrl = process.argv[2];
+  const dbUrl = process.argv[2] || process.env.DATABASE_URL;
   console.log('seeding...');
   const client = new Client({
     connectionString: dbUrl,
