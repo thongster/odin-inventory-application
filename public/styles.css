@@ -459,6 +459,57 @@ body {
   margin-top: 1rem;
 }
 
+/* ===== Elements Grid ===== */
+.element-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ===== Element Card ===== */
+.element-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.element-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-arcane);
+  box-shadow:
+    0 0 18px var(--accent-arcane-glow),
+    0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* ===== Element Name ===== */
+.element-name {
+  margin: 0 0 0.75rem;
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+}
+
+.element-link {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.element-link:hover {
+  color: var(--accent-arcane);
+}
+
+/* ===== Description ===== */
+.element-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
 @media (max-width: 720px) {
   .section-header-with-action {
     flex-direction: column;
