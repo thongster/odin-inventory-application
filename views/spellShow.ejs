@@ -8,23 +8,51 @@
     <title>Mage Spellbook | Inventory Application</title>
   </head>
   <body>
-    <h1>Mage Spellbook</h1>
+    <%- include("partials/header.ejs") %>
 
-    <h2><%= spell.name %></h2>
-    <p><%= spell.description %></p>
-    <p><%= spell.mana %></p>
-    <p><%= spell.cooldown %></p>
-    <p><%= spell.damage %></p>
-    <p><%= spell.range %></p>
-    <p><%= spell.element %></p>
+    <main class="main">
+      <section class="section">
+        <article class="spell-detail">
+          <!-- Spell Header -->
+          <header class="spell-detail-header">
+            <h2 class="spell-detail-name"><%= spell.name %></h2>
+            <span class="spell-detail-element"><%= spell.element %></span>
+          </header>
 
-    <a href="/spells/<%= spell.id %>/update">Update</a>
-    <form
-      action="/spells/<%= spell.id %>/delete"
-      onsubmit="return confirm('Are you sure you want to delete this spell?');"
-      method="POST"
-    >
-      <button type="submit">Delete</button>
-    </form>
+          <!-- Description -->
+          <p class="spell-detail-description"><%= spell.description %></p>
+
+          <!-- Stats -->
+          <ul class="spell-detail-stats">
+            <li><strong>Mana Cost:</strong> <%= spell.mana %></li>
+            <li><strong>Cooldown:</strong> <%= spell.cooldown %> seconds</li>
+            <li>
+              <strong>Damage:</strong>
+              <%= spell.damage !== null ? spell.damage : '—' %>
+            </li>
+            <li><strong>Range:</strong> <%= spell.range %></li>
+          </ul>
+
+          <!-- Actions -->
+          <div class="spell-detail-actions">
+            <a href="/spells/<%= spell.id %>/update" class="button-secondary">
+              Update Spell
+            </a>
+
+            <form
+              action="/spells/<%= spell.id %>/delete"
+              method="POST"
+              onsubmit="
+                return confirm('Are you sure you want to delete this spell?');
+              "
+            >
+              <button type="submit" class="button-danger">Delete Spell</button>
+            </form>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
   </body>
 </html>
