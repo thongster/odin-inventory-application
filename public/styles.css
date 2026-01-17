@@ -568,6 +568,25 @@ body {
   margin-bottom: 0;
 }
 
+/* ===== Error Pages ===== */
+.error-page {
+  max-width: 520px;
+  margin: 4rem auto;
+  text-align: center;
+}
+
+.error-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.error-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
 @media (max-width: 720px) {
   .section-header-with-action {
     flex-direction: column;
