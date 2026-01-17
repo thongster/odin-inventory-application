@@ -8,41 +8,122 @@
     <title>Mage Spellbook | Inventory Application</title>
   </head>
   <body>
-    <h1>Mage Spellbook</h1>
-    <%- include("partials/errors.ejs") %>
-    <h2>Update Spell</h2>
-    <form action="/spells/<%= spell.id %>/update" method="POST">
-      <label for="name">Spell Name:</label>
-      <input type="text" name="name" value="<%= spell.name %>" required />
-      <label for="description">Description</label>
-      <textarea rows="4" name="description" required>
-<%= spell.description %></textarea
-      >
-      <label for="mana">Mana:</label>
-      <input type="number" name="mana" value="<%= spell.mana %>" required />
-      <label for="cooldown">Cooldown (seconds):</label>
-      <input
-        type="number"
-        name="cooldown"
-        value="<%= spell.cooldown %>"
-        required
-      />
-      <label for="damage">Damage:</label>
-      <input type="number" name="damage" value="<%= spell.damage %>" required />
-      <label for="range">Range:</label>
-      <select name="range" required>
-        <option value="Close" <%= spell.range === 'Close' ? 'selected' : '' %>>Close</option>
-        <option value="Medium" <%= spell.range === 'Medium' ? 'selected' : '' %>>Medium</option>
-        <option value="Long" <%= spell.range === 'Long' ? 'selected' : '' %>>Long</option>
-      </select>
-      <label for="element">Element:</label>
-      <select name="element" required>
-        <% elements.forEach((element) => { %>
-            <option value="<%= element.name %>" <%= spell.element === element.name ? 'selected' : '' %>><%= element.name %></option>
-        <% }) %>
+    <%- include("partials/header.ejs") %>
 
-      </select>
-      <button type="submit">Update</button>
-    </form>
+    <main class="main">
+      <section class="section">
+
+        <article class="form-card">
+
+          <header class="form-header">
+            <h2 class="form-title">Update Spell</h2>
+            <p class="form-subtitle">
+              Revise the recorded details of this spell.
+            </p>
+          </header>
+
+          <%- include("partials/errors.ejs") %>
+
+          <form
+            action="/spells/<%= spell.id %>/update"
+            method="POST"
+            class="form"
+          >
+            <div class="form-group">
+              <label for="name">Spell Name</label>
+              <input
+                type="text"
+                name="name"
+                value="<%= spell.name %>"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                rows="4"
+                name="description"
+                required
+              ><%= spell.description %></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="mana">Mana</label>
+                <input
+                  type="number"
+                  name="mana"
+                  value="<%= spell.mana %>"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="cooldown">Cooldown (seconds)</label>
+                <input
+                  type="number"
+                  name="cooldown"
+                  value="<%= spell.cooldown %>"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="damage">Damage</label>
+                <input
+                  type="number"
+                  name="damage"
+                  value="<%= spell.damage %>"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="range">Range</label>
+                <select name="range" required>
+                  <option value="Close" <%= spell.range === 'Close' ? 'selected' : '' %>>Close</option>
+                  <option value="Medium" <%= spell.range === 'Medium' ? 'selected' : '' %>>Medium</option>
+                  <option value="Long" <%= spell.range === 'Long' ? 'selected' : '' %>>Long</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="element">Element</label>
+              <select name="element" required>
+                <% elements.forEach((element) => { %>
+                  <option
+                    value="<%= element.name %>"
+                    <%= spell.element === element.name ? 'selected' : '' %>
+                  >
+                    <%= element.name %>
+                  </option>
+                <% }) %>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="button-primary">
+                Update Spell
+              </button>
+              <a
+                href="/spells/<%= spell.id %>"
+                class="button-secondary"
+              >
+                Cancel
+              </a>
+            </div>
+          </form>
+
+        </article>
+
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+
   </body>
 </html>
