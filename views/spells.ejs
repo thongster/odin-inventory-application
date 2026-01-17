@@ -13,9 +13,9 @@
     <main class="main">
       <section class="section">
         <header class="section-header">
-          <h2 class="section-title">All Spells</h2>
+          <h2 class="section-title">Mage Spellbook</h2>
           <p class="section-subtitle">
-            A complete registry of recorded magic within the Mage Spellbook.
+            A catalog of all recorded spells and their arcane properties.
           </p>
         </header>
 
@@ -25,7 +25,7 @@
           </p>
         <% } else { %>
           <div class="spell-grid">
-            <% spells.forEach(spell => { %>
+            <% spells.forEach((spell) => { %>
               <article class="spell-card">
                 <header class="spell-card-header">
                   <h3 class="spell-name">
@@ -33,9 +33,7 @@
                       <%= spell.name %>
                     </a>
                   </h3>
-                  <span class="spell-element">
-                    <%= spell.element %>
-                  </span>
+                  <span class="spell-element"><%= spell.element %></span>
                 </header>
 
                 <p class="spell-description">
@@ -45,6 +43,9 @@
                 <ul class="spell-meta">
                   <li><strong>Mana:</strong> <%= spell.mana %></li>
                   <li><strong>Cooldown:</strong> <%= spell.cooldown %>s</li>
+                  <li><strong>Damage:</strong>
+                    <%= spell.damage !== null ? spell.damage : '—' %>
+                  </li>
                   <li><strong>Range:</strong> <%= spell.range %></li>
                 </ul>
               </article>
