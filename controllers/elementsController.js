@@ -84,23 +84,22 @@ async function showUpdateElementForm(req, res) {
 }
 
 async function updateElement(req, res) {
-  const elements = await db.getAllElements();
+  const elementPre = await db.getElementByName(req.params.element);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).render(`updateSpell`, {
+    return res.status(400).render(`updateElement`, {
       errors: errors.array(),
       element: {
         name: req.body.name,
         description: req.body.description,
       },
-      elements: elements,
     });
   }
   const { name, description } = matchedData(req);
 
-  await db.updateElement(req.params.element, name, description);
+  await db.updateElement(elementPre.id, name, description);
 
-  res.redirect(`/spells/${req.params.element}`);
+  res.redirect(`/elements/${req.params.element}`);
 }
 
 module.exports = {

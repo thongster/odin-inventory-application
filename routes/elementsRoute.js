@@ -19,6 +19,10 @@ elementsRoute.post('/:element/delete', elementsController.deleteElement);
 
 elementsRoute.get('/:element/update', elementsController.showUpdateElementForm);
 
-elementsRoute.post('/:element/update', elementsController.updateElement);
+elementsRoute.post(
+  '/:element/update',
+  elementsController.validateElement,
+  elementsController.updateElement
+);
 
 module.exports = elementsRoute;
