@@ -55,7 +55,7 @@ async function showAddElement(req, res) {
   res.render('addElement');
 }
 
-async function addElement(req, res) {
+async function addElement(req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render('addElement', {
@@ -74,6 +74,7 @@ async function addElement(req, res) {
         errors: [{ msg: 'An element with this name already exists' }],
       });
     }
+    next(err);
   }
 }
 
