@@ -76,6 +76,7 @@ body {
 }
 
 .main {
+  flex: 1;
   display: flex;
   align-items: center;
 }
@@ -265,4 +266,82 @@ body {
   color: var(--text-muted);
   font-style: italic;
   margin-top: 3rem;
+}
+
+/* ===== Spell Detail Page ===== */
+.spell-detail {
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Header */
+.spell-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.spell-detail-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.spell-detail-element {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-arcane);
+}
+
+/* Description */
+.spell-detail-description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 1.25rem 0;
+}
+
+/* Stats */
+.spell-detail-stats {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.spell-detail-stats li {
+  margin-bottom: 0.4rem;
+}
+
+/* Actions */
+.spell-detail-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+/* Danger button */
+.button-danger {
+  background-color: transparent;
+  color: var(--error);
+  border: 1px solid var(--error);
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button-danger:hover {
+  background-color: var(--error);
+  color: #ffffff;
 }

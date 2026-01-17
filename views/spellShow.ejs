@@ -24,12 +24,9 @@
 
           <!-- Stats -->
           <ul class="spell-detail-stats">
+            <li><strong>Damage:</strong> <%= spell.damage %></li>
             <li><strong>Mana Cost:</strong> <%= spell.mana %></li>
             <li><strong>Cooldown:</strong> <%= spell.cooldown %> seconds</li>
-            <li>
-              <strong>Damage:</strong>
-              <%= spell.damage !== null ? spell.damage : '—' %>
-            </li>
             <li><strong>Range:</strong> <%= spell.range %></li>
           </ul>
 
