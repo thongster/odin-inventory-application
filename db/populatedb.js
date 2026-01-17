@@ -3,7 +3,9 @@
 const { Client } = require('pg');
 
 // allow use of .env
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS categories (
