@@ -8,33 +8,100 @@
     <title>Mage Spellbook | Inventory Application</title>
   </head>
   <body>
-    <h1>Mage Spellbook</h1>
-    <%- include("partials/errors.ejs") %>
-    <h2>New Spell</h2>
-    <form action="/spells/new" method="POST">
-      <label for="name">Spell Name:</label>
-      <input type="text" name="name" required />
-      <label for="description">Description</label>
-      <textarea rows="4" name="description" required></textarea>
-      <label for="mana">Mana:</label>
-      <input type="number" name="mana" required />
-      <label for="cooldown">Cooldown (seconds):</label>
-      <input type="number" name="cooldown" required />
-      <label for="damage">Damage:</label>
-      <input type="number" name="damage" required />
-      <label for="range">Range:</label>
-      <select name="range" required>
-        <option value="Close">Close</option>
-        <option value="Medium">Medium</option>
-        <option value="Long">Long</option>
-      </select>
-      <label for="element">Element:</label>
-      <select name="element" required>
-        <% elements.forEach((element) => { %>
-            <option value="<%= element.name %>"><%= element.name %></option>
-        <% }) %>
-      </select>
-      <button type="submit">Add</button>
-    </form>
+    <%- include("partials/header.ejs") %>
+
+    <main class="main">
+      <section class="section">
+
+        <article class="form-card">
+
+          <header class="form-header">
+            <h2 class="form-title">Add New Spell</h2>
+            <p class="form-subtitle">
+              Record a newly discovered spell into the Mage Spellbook.
+            </p>
+          </header>
+
+          <%- include("partials/errors.ejs") %>
+
+          <form action="/spells/new" method="POST" class="form">
+
+            <div class="form-group">
+              <label for="name">Spell Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="e.g. Inferno Burst"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                rows="4"
+                name="description"
+                placeholder="Describe the spell’s effects and behavior..."
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="damage">Damage</label>
+                <input type="number" name="damage" required />
+              </div>
+
+              <div class="form-group">
+                <label for="mana">Mana</label>
+                <input type="number" name="mana" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cooldown">Cooldown (seconds)</label>
+                <input type="number" name="cooldown" required />
+              </div>
+
+              <div class="form-group">
+                <label for="range">Range</label>
+                <select name="range" required>
+                  <option value="Close">Close</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Long">Long</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="element">Element</label>
+              <select name="element" required>
+                <% elements.forEach((element) => { %>
+                  <option value="<%= element.name %>">
+                    <%= element.name %>
+                  </option>
+                <% }) %>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="button-primary">
+                Add Spell
+              </button>
+              <a href="/spells" class="button-secondary">
+                Cancel
+              </a>
+            </div>
+
+          </form>
+
+        </article>
+
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+
   </body>
 </html>
