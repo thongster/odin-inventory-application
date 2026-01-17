@@ -172,21 +172,38 @@ body {
   padding: 3rem 1.5rem;
 }
 
+/* ===== Section Header ===== */
 .section-header {
-  text-align: center;
   margin-bottom: 2.5rem;
 }
 
-.section-title {
-  font-family: 'Cinzel', serif;
-  font-size: 1.75rem;
-  margin: 0;
+/* Header layout with action button */
+.section-header-with-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
 }
 
+/* Text wrapper */
+.section-header-text {
+  max-width: 70%;
+}
+
+/* Title */
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+/* Subtitle */
 .section-subtitle {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
   margin-top: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
 }
 
 .spell-grid {
