@@ -2,7 +2,7 @@
   "name": "odin-inventory-application",
   "version": "1.0.0",
   "description": "Project: Inventory Application from The Odin Project's NodeJS Course",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
