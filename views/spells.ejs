@@ -8,15 +8,53 @@
     <title>Mage Spellbook | Inventory Application</title>
   </head>
   <body>
-    <h1>Mage Spellbook</h1>
-    <% spells.forEach((spell) => { %>
-        <h2><%= spell.name %></h2>
-        <p><%= spell.description %></p>
-        <p><%= spell.mana %></p>
-        <p><%= spell.cooldown %></p>
-        <p><%= spell.damage %></p>
-        <p><%= spell.range %></p>
-        <p><%= spell.element %></p>
-    <% }) %>
+    <%- include("partials/header.ejs") %>
+
+    <main class="main">
+      <section class="section">
+        <header class="section-header">
+          <h2 class="section-title">All Spells</h2>
+          <p class="section-subtitle">
+            A complete registry of recorded magic within the Mage Spellbook.
+          </p>
+        </header>
+
+        <% if (spells.length === 0) { %>
+          <p class="empty-state">
+            No spells have been recorded yet.
+          </p>
+        <% } else { %>
+          <div class="spell-grid">
+            <% spells.forEach(spell => { %>
+              <article class="spell-card">
+                <header class="spell-card-header">
+                  <h3 class="spell-name">
+                    <a href="/spells/<%= spell.id %>" class="spell-link">
+                      <%= spell.name %>
+                    </a>
+                  </h3>
+                  <span class="spell-element">
+                    <%= spell.element %>
+                  </span>
+                </header>
+
+                <p class="spell-description">
+                  <%= spell.description %>
+                </p>
+
+                <ul class="spell-meta">
+                  <li><strong>Mana:</strong> <%= spell.mana %></li>
+                  <li><strong>Cooldown:</strong> <%= spell.cooldown %>s</li>
+                  <li><strong>Range:</strong> <%= spell.range %></li>
+                </ul>
+              </article>
+            <% }) %>
+          </div>
+        <% } %>
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+
   </body>
 </html>
