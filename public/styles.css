@@ -470,7 +470,7 @@ body {
 .element-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: 12px;
+  border-radius: 1rem;
   padding: 1.75rem 1.5rem;
   transition:
     transform 0.2s ease,

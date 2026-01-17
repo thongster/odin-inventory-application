@@ -8,15 +8,50 @@
     <title>Mage Spellbook | Inventory Application</title>
   </head>
   <body>
-    <h1>Mage Spellbook</h1>
-    <%- include("partials/errors.ejs") %>
-    <h2>New Element</h2>
-    <form action="/elements/add" method="POST">
-      <label for="name">Element Name:</label>
-      <input type="text" name="name" required />
-      <label for="description">Description</label>
-      <textarea rows="4" name="description" required></textarea>
-      <button type="submit">Add</button>
-    </form>
+    <%- include("partials/header.ejs") %>
+
+    <main class="main">
+      <section class="section">
+        <article class="form-card">
+          <header class="form-header">
+            <h2 class="form-title">Add New Element</h2>
+            <p class="form-subtitle">
+              Define a new elemental discipline and its magical philosophy.
+            </p>
+          </header>
+
+          <%- include("partials/errors.ejs") %>
+
+          <form action="/elements/add" method="POST" class="form">
+            <div class="form-group">
+              <label for="name">Element Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="e.g. Fire, Void, Light"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                rows="4"
+                name="description"
+                placeholder="Describe the nature and purpose of this element..."
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="button-primary">Add Element</button>
+              <a href="/elements" class="button-secondary"> Cancel </a>
+            </div>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
   </body>
 </html>
