@@ -1,3 +1,36 @@
+:root {
+  /* ===== Base Backgrounds ===== */
+  --bg-main: #0f1216; /* Main page background (deep charcoal) */
+  --bg-surface: #1a1d23; /* Cards, panels, sections */
+  --bg-surface-alt: #232733; /* Slightly raised surfaces */
+
+  /* ===== Text Colors ===== */
+  --text-primary: #e6e6eb; /* Main readable text */
+  --text-secondary: #b8bcc8; /* Muted descriptions */
+  --text-muted: #8b8fa1; /* Labels, metadata */
+
+  /* ===== Borders & Dividers ===== */
+  --border-subtle: #2d3140; /* Card borders, dividers */
+  --border-strong: #3a3f55; /* Emphasized separators */
+
+  /* ===== Arcane Accent ===== */
+  --accent-arcane: #7c6ee6; /* Primary accent (links, buttons) */
+  --accent-arcane-dark: #5a4fdc;
+  --accent-arcane-glow: rgba(124, 110, 230, 0.4);
+
+  /* ===== Element Accents (optional use) ===== */
+  --element-fire: #e2583e;
+  --element-water: #3fa9f5;
+  --element-wind: #7fd1b9;
+  --element-earth: #8b6f47;
+  --element-arcane: #9b8cff;
+
+  /* ===== Status / Feedback ===== */
+  --success: #5fb3a2;
+  --error: #e06c75;
+  --warning: #e5c07b;
+}
+
 body {
   background: linear-gradient(to bottom, rgb(99, 177, 250), lightblue);
   min-height: 100vh;
