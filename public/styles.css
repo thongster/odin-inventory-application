@@ -62,6 +62,12 @@ body {
   gap: 1rem;
 }
 
+.header-inner a {
+  text-decoration: 0;
+  display: block;
+  color: var(--text-primary);
+}
+
 .logo {
   width: 48px;
   height: 48px;
@@ -451,4 +457,15 @@ body {
   justify-content: flex-end;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+@media (max-width: 720px) {
+  .section-header-with-action {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-header-text {
+    max-width: 100%;
+  }
 }

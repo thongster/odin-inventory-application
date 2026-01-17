@@ -8,12 +8,53 @@
     <title>Mage Spellbook | Inventory Application</title>
   </head>
   <body>
-    <h1>Mage Spellbook</h1>
-    <% elements.forEach((element) => { %>
-        <h2><%= element.name %></h2>
-        <p><%= element.description %></p>
-    <% }) %>
+    <%- include("partials/header.ejs") %>
 
-    <a href="/elements/add">Add Element</a>
+    <main class="main">
+      <section class="section">
+
+        <header class="section-header section-header-with-action">
+          <div class="section-header-text">
+            <h2 class="section-title">Elemental Disciplines</h2>
+            <p class="section-subtitle">
+              Each element represents a distinct magical philosophy and style of spellcasting.
+            </p>
+          </div>
+
+          <a href="/elements/add" class="button-primary">
+            + Add Element
+          </a>
+        </header>
+
+        <% if (elements.length === 0) { %>
+          <p class="empty-state">
+            No elements have been recorded yet.
+          </p>
+        <% } else { %>
+          <div class="element-grid">
+            <% elements.forEach((element) => { %>
+              <article class="element-card">
+                <h3 class="element-name">
+                  <a
+                    href="/elements/<%= element.name.toLowerCase() %>"
+                    class="element-link"
+                  >
+                    <%= element.name %>
+                  </a>
+                </h3>
+
+                <p class="element-description">
+                  <%= element.description %>
+                </p>
+              </article>
+            <% }) %>
+          </div>
+        <% } %>
+
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+
   </body>
 </html>
