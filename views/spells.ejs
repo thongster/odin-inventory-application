@@ -26,7 +26,7 @@
         <% } else { %>
           <div class="spell-grid">
             <% spells.forEach((spell) => { %>
-              <article class="spell-card">
+              <div class="spell-card">
                 <header class="spell-card-header">
                   <h3 class="spell-name">
                     <a href="/spells/<%= spell.id %>" class="spell-link">
@@ -41,14 +41,12 @@
                 </p>
 
                 <ul class="spell-meta">
+                  <li><strong>Damage:</strong> <%= spell.damage %></li>
                   <li><strong>Mana:</strong> <%= spell.mana %></li>
                   <li><strong>Cooldown:</strong> <%= spell.cooldown %>s</li>
-                  <li><strong>Damage:</strong>
-                    <%= spell.damage !== null ? spell.damage : '—' %>
-                  </li>
                   <li><strong>Range:</strong> <%= spell.range %></li>
                 </ul>
-              </article>
+              </div>
             <% }) %>
           </div>
         <% } %>
