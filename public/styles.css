@@ -31,7 +31,131 @@
   --warning: #e5c07b;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: linear-gradient(to bottom, rgb(99, 177, 250), lightblue);
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.page {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  border-bottom: 1px solid var(--border-subtle);
+  background: linear-gradient(to bottom, var(--bg-surface), var(--bg-main));
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 0 8px var(--accent-arcane-glow));
+}
+
+.title {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+}
+
+.hero {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.heroImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 1rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.hero-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.button-primary,
+.button-secondary {
+  padding: 0.75rem 1.75rem;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.button-primary {
+  background-color: var(--accent-arcane);
+  color: #ffffff;
+  border-color: var(--accent-arcane-dark);
+}
+
+.button-primary:hover {
+  background-color: var(--accent-arcane-dark);
+  box-shadow: 0 0 12px var(--accent-arcane-glow);
+}
+
+.button-secondary {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.button-secondary:hover {
+  border-color: var(--accent-arcane);
+  color: var(--accent-arcane);
+}
+
+.footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 1rem;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
