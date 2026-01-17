@@ -4,6 +4,8 @@
 
 An inventory management application built with Express, PostgreSQL, and EJS. This was a project built for The Odin Project's NodeJS Course - Inventory App.
 
+Live Demo: https://odin-inventory-application-production-5983.up.railway.app/
+
 ## Features
 
 - CRUD for spells and elements
