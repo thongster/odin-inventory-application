@@ -22,9 +22,13 @@ const validateElement = [
     .withMessage('Description must be between 10 and 255 characters'),
 ];
 
-async function getAllElements(req, res) {
-  const elements = await db.getAllElements();
-  res.render('elements', { elements: elements });
+async function getAllElements(req, res, next) {
+  try {
+    const elements = await db.getAllElements();
+    res.render('elements', { elements: elements });
+  } catch (err) {
+    next(err);
+  }
 }
 
 async function getSpellsByElement(req, res) {
